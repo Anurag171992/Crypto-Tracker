@@ -19,5 +19,4 @@ enum Secrets {
 
 enum Constants {
     static let githubUser = "mralexgray"
-    static let cellIdentifier = "RepositoryTableViewCell"
 }

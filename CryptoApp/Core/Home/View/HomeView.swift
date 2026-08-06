@@ -10,8 +10,9 @@ import SwiftUI
 struct HomeView: View {
     
     //Properties
+    @EnvironmentObject private var homeViewModel: HomeViewModel
     @State private var showPortfolio: Bool = false
-   
+    
     var body: some View {
         ZStack {
             //background color
@@ -21,8 +22,20 @@ struct HomeView: View {
             //Content Layer
             VStack {
                 homeHeader
+                
+                columnTitles
+                
+                if !showPortfolio {
+                    altCoinlist
+                        .listStyle(.plain)
+                        .transition(.move(edge: .leading))
+                } else {
+                    aportfolioAltCoinlist
+                        .transition(.move(edge: .trailing))
+                }
+                
                 Spacer(minLength: 0)
-
+                
             }
         }
     }
@@ -31,7 +44,9 @@ struct HomeView: View {
 #Preview {
     NavigationStack {
         HomeView()
+            .navigationBarHidden(true)
     }
+    .environmentObject(PreviewProvider.shared.homeViewModel)
 }
 
 extension HomeView {
@@ -39,13 +54,13 @@ extension HomeView {
     private var homeHeader: some View {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" :"info")
-               // .animation(nil, value: showPortfolio)
+            // .animation(nil, value: showPortfolio)
                 .background(
                     CircleButtonAnimationView(isAnimating: $showPortfolio)
                 )
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
-                .font(.title)
+                .font(.title2)
                 .fontWeight(.heavy)
                 .foregroundColor(Color.theme.accentColor)
                 .animation(nil, value: showPortfolio)
@@ -61,4 +76,38 @@ extension HomeView {
         .padding(.horizontal)
     }
     
+    private var altCoinlist: some View {
+        List {
+            ForEach(homeViewModel.allCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: false)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+    private var aportfolioAltCoinlist: some View {
+        List {
+            ForEach(homeViewModel.allCoins) { coin in
+                CoinRowView(coin: coin, showHoldingColumn: true)
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+            }
+        }
+        .listStyle(.plain)
+    }
+    
+    private var columnTitles: some View {
+        HStack(spacing: 8.0) {
+            Text("Coins")
+            Spacer()
+            if showPortfolio {
+                Text("Holdings")
+            }
+            Spacer()
+            Text("Price")
+        }
+        .font(.subheadline)
+        .foregroundColor(Color.theme.secondaryTextColor)
+        .padding(.horizontal)
+    }
 }

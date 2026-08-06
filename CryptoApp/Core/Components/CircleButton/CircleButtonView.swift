@@ -27,12 +27,11 @@ struct CircleButtonView: View {
 #Preview {
     Group {
         CircleButtonView(iconName: "info")
-            .colorScheme(.light)
             .frame(width: 50, height: 50)
         
         CircleButtonView(iconName: "plus")
-            .colorScheme(.dark)
             .frame(width: 50, height: 50)
+            .colorScheme(.dark)
     }
     .padding()
     
