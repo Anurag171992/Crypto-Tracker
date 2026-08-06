@@ -31,28 +31,17 @@ The project follows the **MVVM (Model-View-ViewModel)** architecture.
 This structure promotes separation of concerns, improves maintainability, and makes the application easier to test.
 
 - **Model**
-  - Coin
-  - Market Data
-  - Statistics
-  - Portfolio Entity (Core Data)
+  - CoinModel
 
 - **View**
-  - Home
-  - Portfolio
-  - Coin Details
-  - Settings
+  - HomeView
 
 - **ViewModel**
   - HomeViewModel
-  - DetailViewModel
-  - PortfolioViewModel
 
 - **Services**
   - Networking
   - Coin Data Service
-  - Market Data Service
-  - Portfolio Data Service
-  - Image Cache Service
 
 ---
 
@@ -73,11 +62,11 @@ Combine is used for:
 
 ### Core Data
 
-Core Data is used to persist the user's portfolio locally, allowing portfolio information to remain available between app launches.
+Core Data will be used to persist the user's portfolio locally, allowing portfolio information to remain available between app launches.
 
 ### Generic Networking Layer
 
-A reusable networking layer is used to fetch and decode any `Decodable` model.
+A reusable networking layer will be used to fetch and decode any `Decodable` model.
 
 ### Dependency Injection
 
@@ -116,9 +105,6 @@ Dependencies are injected where required to improve modularity and testability.
     - Model
     - View
     - ViewModel
-  - **Portfolio** *(Planned)*
-  - **Coin Detail** *(Planned)*
-  - **Settings** *(Planned)*
 
 - **Resources**
   - Assets
@@ -137,8 +123,6 @@ Dependencies are injected where required to improve modularity and testability.
 - Combine
 - Core Data
 - URLSession
-- Async Image Caching
-- Swift Concurrency (where applicable)
 
 ---
 
