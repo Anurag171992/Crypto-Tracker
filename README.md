@@ -96,20 +96,37 @@ Dependencies are injected where required to improve modularity and testability.
 
 ## Project Structure
 
-- **App** — App entry point
-- **Core** — Networking, Utilities, Extensions
-- **Models** — API and local models
-- **Services** — API services, Image service, Portfolio service
-- **ViewModels** — Business logic
-- **Views**
-  - Home
-  - Portfolio
-  - Coin Detail
-  - Settings
-  - Components
+- **App**
+  - Application entry point
+
+- **Core**
+  - **Components**
+    - Reusable SwiftUI views
+  - **Networking**
+    - Endpoint
+    - CoinEndpoint
+    - NetworkManager
+    - APIError
+  - **Utilities**
+    - Constants
+    - Extensions
+
+- **Features**
+  - **Home**
+    - Model
+    - View
+    - ViewModel
+  - **Portfolio** *(Planned)*
+  - **Coin Detail** *(Planned)*
+  - **Settings** *(Planned)*
+
 - **Resources**
   - Assets
-  - Preview Content
+  - Config
+    - Secrets.xcconfig
+
+- **Supporting Files**
+  - Info.plist
 
 ---
 
