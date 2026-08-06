@@ -45,7 +45,7 @@ extension HomeView {
                 )
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
-                .font(.headline)
+                .font(.title)
                 .fontWeight(.heavy)
                 .foregroundColor(Color.theme.accentColor)
                 .animation(nil, value: showPortfolio)
