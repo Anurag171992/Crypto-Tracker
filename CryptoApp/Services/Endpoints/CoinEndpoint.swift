@@ -8,6 +8,7 @@ import Foundation
 
 enum CoinEndpoint {
     case getMarketCoins(currency: String, page: Int)
+    case getGlobalData
 }
 
 extension CoinEndpoint: EndpointProtocol {
@@ -20,6 +21,8 @@ extension CoinEndpoint: EndpointProtocol {
         switch self {
         case .getMarketCoins:
             return "coins/markets"
+        case .getGlobalData:
+            return "global"
         }
     }
 
@@ -35,6 +38,8 @@ extension CoinEndpoint: EndpointProtocol {
                 URLQueryItem(name: "price_change_percentage", value: "24h"),
                 URLQueryItem(name: "page", value: String(page))
             ]
+        case .getGlobalData:
+            return []
         }
     }
 

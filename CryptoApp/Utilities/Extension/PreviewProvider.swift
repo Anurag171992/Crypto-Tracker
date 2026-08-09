@@ -12,6 +12,9 @@ class PreviewProvider {
     static var shared = PreviewProvider()
     private init() {}
     let homeViewModel = HomeViewModel()
+    let statisticModel1 = StatisticModel(title: "Market Cap", value: "$12.54Bn", percentageChange: 25.34)
+    let statisticModel2 = StatisticModel(title: "Total Value", value: "$23 Tr")
+    let statisticModel3 = StatisticModel(title: "Portfolio Value", value: "$53.87K", percentageChange: -15.34)
     
     let coin = CoinModel(
        id: "bitcoin",

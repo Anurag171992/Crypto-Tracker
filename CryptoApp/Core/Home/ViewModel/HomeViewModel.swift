@@ -10,28 +10,20 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     
+    @Published var marketData : [StatisticModel] = []
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
     private var cancellables = Set<AnyCancellable>()
     
     private let dataService = CoinDataService(networkManager: NetworkManager())
+    private let marketDataService = MarketDataService(networkManager: NetworkManager())
     
     init() {
         addSubscribers()
     }
     
     func addSubscribers() {
-        //        dataService.$allCoins.sink(receiveValue: { [weak self] coins in
-        //            guard let self else { return }
-        //            DispatchQueue.main.async {
-        //                self.allCoins = coins
-        //                    .filter { ($0.marketCapRank ?? 0) > 0 }
-        //                    .sorted {
-        //                        ($0.marketCapRank ?? Int.max) < ($1.marketCapRank ?? Int.max)
-        //                    }
-        //            }
-        //        }).store(in: &cancellables)
         
         ///Here using combineLatest we are subscrinbing to both searchText and allCoins , so anything changes in these the code will run
         ///Hence the wbove code is no longer needed
@@ -51,6 +43,33 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        
+        //Updates Market Data 
+        marketDataService.$marketData
+            .map(self.transformToStatistics)
+            .sink { [weak self] marketData in
+                guard let self else { return }
+                DispatchQueue.main.async {
+                    self.marketData = marketData
+                }
+            }.store(in: &cancellables)
+        
+    }
+    
+    private func transformToStatistics(from globalDataResponse: GlobalDataResponse?) -> [StatisticModel] {
+        var stats: [StatisticModel] = []
+        guard let data = globalDataResponse else {return stats}
+        let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
+        let volume = StatisticModel(title: "24h Volume", value: data.volume, percentageChange: data.volumeChangePercentage24HUsd)
+        let btcDominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance, percentageChange: nil)
+        let portfolio = StatisticModel(title: "Portfolio", value: "$0.0", percentageChange: 0)
+        stats.append(contentsOf: [
+            marketCap,
+            volume,
+            btcDominance,
+            portfolio
+        ])
+        return stats
     }
     
     private func filterCoins(text: String, startingCoins: [CoinModel]) -> [CoinModel] {

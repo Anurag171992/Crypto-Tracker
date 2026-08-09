@@ -7,32 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DFCFFD88-5838-40D3-9C7F-E52ED5FC2066"
+            uuid = "A74EB142-864E-41B0-8BF6-75861920E3F8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CryptoApp/Core/Home/ViewModel/HomeViewModel.swift"
+            filePath = "CryptoApp/Services/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "addSubscribers()"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "requestDataCombine(modelType:endPoint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0B5F7C5C-3705-4B3B-B2AD-645E157064BF"
+            uuid = "8F09D09B-B397-47B1-AA98-F936F8BF8CF8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CryptoApp/Core/Home/ViewModel/HomeViewModel.swift"
+            filePath = "CryptoApp/Services/Service/MarketDataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "addSubscribers()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getGlobalData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "227EFFF3-E795-404A-9612-5CF41AC1846B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CryptoApp/Services/Manager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "requestDataCombine(modelType:endPoint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
