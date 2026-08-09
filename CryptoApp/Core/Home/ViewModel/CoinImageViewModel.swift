@@ -19,13 +19,12 @@ class CoinImageViewModel: ObservableObject {
     
     init(coin: CoinModel) {
         self.coin = coin
-        self.coinImageService = CoinImageService(coin: coin)
+        self.coinImageService = CoinImageService(coin: coin, networkManager: NetworkManager())
         addSubscribers()
         self.isLoading = true
     }
     
     func addSubscribers() {
-        debugPrint("Downloading Image from Server!")
         coinImageService.$image.sink(receiveValue: { [weak self] image in
             guard let self else { return }
             self.isLoading = false

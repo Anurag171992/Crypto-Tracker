@@ -12,7 +12,6 @@ enum Secrets {
         guard let token = Bundle.main.object(forInfoDictionaryKey: "AccessToken") as? String else {
             fatalError("Missing Coingecko AccessToken")
         }
-        debugPrint("Attempting to read Coingecko Access Token from Info.plist...")
         return token
     }()
 }

@@ -12,13 +12,15 @@ class CoinDataService {
     
     @Published var allCoins: [CoinModel] = []
     var coinSubscription: AnyCancellable?
+    var networkManager: NetworkManager
     
-    init() {
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
         getCoins()
     }
     
     private func getCoins() {
-        coinSubscription = NetworkManager.shared.requestDataCombine(modelType: [CoinModel].self, endPoint: CoinEndpoint.getMarketCoins(currency: "usd", page: 1))
+        coinSubscription = networkManager.requestDataCombine(modelType: [CoinModel].self, endPoint: CoinEndpoint.getMarketCoins(currency: "usd", page: 1))
         ///sink - Listens to the data that will come in future by the publisher
         ///sink() returns an AnyCancellable representing the active subscription.
             .sink(receiveCompletion: NetworkManager.handleCompletion, receiveValue: { [weak self] returnedCoins in

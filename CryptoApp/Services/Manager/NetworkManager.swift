@@ -14,8 +14,7 @@ protocol NetworkingProtocol {
 }
 
 class NetworkManager: NetworkingProtocol {
-    static let shared = NetworkManager()
-    private init() {}
+
     private let jsonDecoder = JSONDecoder()
     
     // Performs a generic API request and decodes the response.
