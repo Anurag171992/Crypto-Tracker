@@ -15,7 +15,7 @@ struct CoinModel: Codable, Identifiable, Sendable {
 
     let currentPrice: Double
     let marketCap: Double
-    let marketCapRank: Int
+    let marketCapRank: Int?
     let fullyDilutedValuation: Double?
 
     let totalVolume: Double
@@ -104,7 +104,7 @@ struct CoinModel: Codable, Identifiable, Sendable {
     
     var rank: Int {
         get {
-            return marketCapRank
+            return marketCapRank ?? 0
         }
     }
 }

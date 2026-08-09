@@ -25,6 +25,10 @@ class HomeViewModel: ObservableObject {
             guard let self else { return }
             DispatchQueue.main.async {
                 self.allCoins = coins
+                    .filter { ($0.marketCapRank ?? 0) > 0 }
+                    .sorted {
+                        ($0.marketCapRank ?? Int.max) < ($1.marketCapRank ?? Int.max)
+                    }
             }
         }).store(in: &cancellables)
     }

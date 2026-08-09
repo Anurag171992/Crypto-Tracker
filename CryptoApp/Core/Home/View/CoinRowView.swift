@@ -42,11 +42,9 @@ extension CoinRowView {
         Text("\(coin.rank)")
             .font(.headline)
             .foregroundColor(Color.theme.secondaryTextColor)
-            .frame(width: 30)
-        
-        Image(systemName: "heart.fill")
-            .resizable()
-            .frame(width: 30.0, height: 30.0)
+
+        CoinImageView(coin: coin)
+            .frame(width: 30, height: 30)
         
         VStack(alignment: .leading) {
             Text(coin.name)
