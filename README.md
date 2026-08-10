@@ -17,9 +17,8 @@ The application fetches real-time cryptocurrency market data and allows users to
 - Portfolio management
 - Add and remove coins from portfolio
 - Persist portfolio locally using Core Data
-- Settings screen
 - Offline support
-- Pull-to-refresh
+- refresh support
 - Dark Mode support
 
 ---
