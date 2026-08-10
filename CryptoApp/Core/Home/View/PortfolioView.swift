@@ -44,6 +44,11 @@ struct PortfolioView: View {
                     }
                 }
             }
+            .onChange(of: homeViewModel.searchText) {
+                if homeViewModel.searchText.isEmpty {
+                    removeSelectedCoin()
+                }
+            }
         }
     }
 }
@@ -58,7 +63,7 @@ extension PortfolioView {
     private var coinLogoList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 10.0) {
-                ForEach(homeViewModel.allCoins) { coin in
+                ForEach(homeViewModel.searchText.isEmpty ? homeViewModel.portfolioCoins : homeViewModel.allCoins) { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 75.0)
                         .padding(5.0)
@@ -67,12 +72,22 @@ extension PortfolioView {
                                 .stroke(selectedCoin?.id == coin.id ? Color.theme.greenColor : Color.clear, lineWidth: 1.0)
                         )
                         .onTapGesture {
-                            self.selectedCoin = coin
+                            updateSelectedCoins(coin: coin)
                         }
                 }
             }
             .frame(height: 120.0)
             .padding(.leading)
+        }
+    }
+    
+    private func updateSelectedCoins(coin: CoinModel) {
+        self.selectedCoin = coin
+        if let portfolioCoins = homeViewModel.portfolioCoins.first(where: { $0.id == coin.id }),
+           let amount = portfolioCoins.currentHoldings {
+            quantityText = "\(amount)"
+        } else {
+            quantityText = ""
         }
     }
     
@@ -124,10 +139,10 @@ extension PortfolioView {
     }
     
     private func saveButtonPressed() {
-        guard let coin = selectedCoin else {return}
+        guard let coin = selectedCoin, let amount = Double(quantityText) else {return}
         
         //save to portfolio
-        
+        homeViewModel.updatePortfolio(coin: coin, amount: amount)
         //show checkmark
         withAnimation {
             showCheckMark = true

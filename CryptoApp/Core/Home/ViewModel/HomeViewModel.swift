@@ -18,6 +18,7 @@ class HomeViewModel: ObservableObject {
     
     private let dataService = CoinDataService(networkManager: NetworkManager())
     private let marketDataService = MarketDataService(networkManager: NetworkManager())
+    private let portfolioDataService = PortfolioDataService()
     
     init() {
         addSubscribers()
@@ -54,6 +55,25 @@ class HomeViewModel: ObservableObject {
                 }
             }.store(in: &cancellables)
         
+        //CoreData - portfolioCoins
+        
+        $allCoins
+            .combineLatest(portfolioDataService.$savedEntities)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .map({ (coinModels, portfolioEntities) -> [CoinModel] in
+                coinModels.compactMap { (coin) -> CoinModel? in
+                    guard let entity = portfolioEntities.first(where: { $0.coinId == coin.id }) else { return nil }
+                    return coin.upddateCurrentHoldings(amount: entity.amount)
+                }
+            })
+            .sink { [weak self] returnedCoins in
+                guard let self else { return }
+                self.portfolioCoins = returnedCoins
+            }.store(in: &cancellables)
+    }
+    
+    func updatePortfolio(coin: CoinModel, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
     
     private func transformToStatistics(from globalDataResponse: GlobalDataResponse?) -> [StatisticModel] {
