@@ -142,19 +142,18 @@ Screenshots will be added once the application is feature complete.
 
 ## Roadmap
 
-- [ ] Market screen
-- [ ] Search coins using Combine
+- ✅ Market screen
+- ✅ Search coins using Combine
 - [ ] Coin detail screen
 - [ ] 7-day price chart
-- [ ] Portfolio
-- [ ] Add coins to portfolio
-- [ ] Edit portfolio holdings
-- [ ] Core Data persistence
+- ✅ Portfolio
+- ✅ Add coins to portfolio
+- ✅ Edit portfolio holdings
+- ✅ Core Data persistence
 - [ ] Settings page
 - [ ] Offline support
 - [ ] Image caching
-- [ ] Dark Mode
-- [ ] Performance optimizations
+- ✅ Dark Mode
 
 ---
 
