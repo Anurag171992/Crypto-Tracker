@@ -13,6 +13,8 @@ struct HomeView: View {
     @EnvironmentObject private var homeViewModel: HomeViewModel
     @State private var showPortfolio: Bool = false ///For animation right button
     @State private var showPortfolioView: Bool = false
+    @State private var selectedCoin: CoinModel? = nil
+    @State private var showDetailView: Bool = false
     
     var body: some View {
         ZStack {
@@ -44,6 +46,10 @@ struct HomeView: View {
         .sheet(isPresented: $showPortfolioView) {
             PortfolioView()
                 .environmentObject(homeViewModel)
+        }
+        //Navigation to Details View
+        .navigationDestination(isPresented: $showDetailView) {
+            DetailLoadingView(coin: $selectedCoin)
         }
     }
 }
@@ -90,30 +96,47 @@ extension HomeView {
     private var altCoinlist: some View {
         List {
             ForEach(homeViewModel.allCoins) { coin in
-                CoinRowView(coin: coin, showHoldingColumn: false)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                Button {
+                    segueToDetailView(coin: coin)
+                } label: {
+                    CoinRowView(
+                        coin: coin,
+                        showHoldingColumn: false
+                    )
+                    .contentShape(Rectangle()) ///ensures the whole rectangular area of the row participates in hit testing
+                }
+                .buttonStyle(.plain)
             }
         }
         .listStyle(.plain)
         .refreshable {
             homeViewModel.reloadData()
-            // try? await Task.sleep(for: .seconds(2))
-            await withCheckedContinuation { continuation in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    continuation.resume()
-                }
-            }
+             try? await Task.sleep(for: .seconds(2))
         }
     }
     
     private var portfolioCoinlist: some View {
         List {
             ForEach(homeViewModel.portfolioCoins) { coin in
-                CoinRowView(coin: coin, showHoldingColumn: true)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                Button {
+                    segueToDetailView(coin: coin)
+                } label: {
+                    CoinRowView(
+                        coin: coin,
+                        showHoldingColumn: true
+                    )
+                    .contentShape(Rectangle()) ///ensures the whole rectangular area of the row participates in hit testing
+                }
+                .buttonStyle(.plain)
             }
+
         }
         .listStyle(.plain)
+    }
+    
+    private func segueToDetailView(coin: CoinModel) {
+        self.selectedCoin = coin
+        showDetailView.toggle()
     }
     
     private var columnTitles: some View {
