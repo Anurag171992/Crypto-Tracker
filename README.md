@@ -153,8 +153,7 @@ Screenshots will be added once the application is feature complete.
 - [ ] Offline support
 - [ ] Image caching
 - ✅ Dark Mode
-
----
+=======
 
 ## Notes
 

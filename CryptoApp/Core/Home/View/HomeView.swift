@@ -95,6 +95,15 @@ extension HomeView {
             }
         }
         .listStyle(.plain)
+        .refreshable {
+            homeViewModel.reloadData()
+           // try? await Task.sleep(for: .seconds(2))
+            await withCheckedContinuation { continuation in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    continuation.resume()
+                }
+            }
+        }
     }
     
     private var portfolioCoinlist: some View {

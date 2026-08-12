@@ -19,7 +19,7 @@ class CoinDataService {
         getCoins()
     }
     
-    private func getCoins() {
+    func getCoins() {
         coinSubscription = networkManager.requestDataCombine(modelType: [CoinModel].self, endPoint: CoinEndpoint.getMarketCoins(currency: "usd", page: 1))
         ///sink - Listens to the data that will come in future by the publisher
         ///sink() returns an AnyCancellable representing the active subscription.

@@ -10,7 +10,7 @@ import CoreData
 import Combine
 
 class PortfolioDataService {
-
+    
     @Published var savedEntities: [PortfolioEntity] = []
     
     private let container: NSPersistentContainer
@@ -27,6 +27,7 @@ class PortfolioDataService {
         }
     }
     
+    //MARK: Public
     func updatePortfolio(coin: CoinModel, amount: Double) {
         //Check if coin is in portfolio
         if let entityValue = savedEntities.first(where: { $0.coinId == coin.id }) {
@@ -39,6 +40,7 @@ class PortfolioDataService {
             add(coin: coin, amount: amount)
         }
     }
+    
     
     //MARK: Private
     private func getPortfolioValues() {
@@ -62,14 +64,6 @@ class PortfolioDataService {
         applyChanges()
     }
     
-    private func saveContext() {
-        do {
-            try container.viewContext.save()
-        } catch {
-            debugPrint("Error saving to core data \(error.localizedDescription)")
-        }
-    }
-    
     private func delete(entityName: PortfolioEntity) {
         container.viewContext.delete(entityName)
         applyChanges()
@@ -79,5 +73,13 @@ class PortfolioDataService {
         saveContext()
         getPortfolioValues()
     }
-  
+    
+    private func saveContext() {
+        do {
+            try container.viewContext.save()
+        } catch {
+            debugPrint("Error saving to core data \(error.localizedDescription)")
+        }
+    }
+    
 }

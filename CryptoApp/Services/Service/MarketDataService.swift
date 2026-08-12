@@ -20,7 +20,7 @@ class MarketDataService {
         getGlobalData()
     }
     
-    private func getGlobalData() {
+    func getGlobalData() {
         globalMarketSubscription = networkManager.requestDataCombine(modelType: GlobalDataModel.self, endPoint: CoinEndpoint.getGlobalData)
         ///sink - Listens to the data that will come in future by the publisher
         ///sink() returns an AnyCancellable representing the active subscription.
