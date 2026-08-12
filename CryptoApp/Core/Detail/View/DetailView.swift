@@ -40,7 +40,7 @@ struct DetailView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 8.0) {
+                VStack(spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(
                             coinDetailViewModel.coinDetails?.description.en
@@ -87,8 +87,8 @@ struct DetailView: View {
                         ForEach(0..<6) { _ in
                             StatisticView(stat: StatisticModel(title: "Title", value: "Value"))
                         }
+                        
                     }
-                    
                 }
                 .padding()
             }
