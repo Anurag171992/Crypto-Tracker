@@ -8,6 +8,15 @@
 import Foundation
 import Combine
 
+enum SortOption {
+    case rank
+    case rankRerversed
+    case holding
+    case holdingReversed
+    case price
+    case priceReversed
+}
+
 class HomeViewModel: ObservableObject {
     
     @Published var marketData : [StatisticModel] = []
@@ -15,6 +24,8 @@ class HomeViewModel: ObservableObject {
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
+    @Published var sortOption: SortOption = .holding
+    
     private var cancellables = Set<AnyCancellable>()
     
     private let dataService = CoinDataService(networkManager: NetworkManager())
@@ -30,19 +41,13 @@ class HomeViewModel: ObservableObject {
         ///Here using combineLatest we are subscrinbing to both searchText and allCoins , so anything changes in these the code will run
         ///Hence the wbove code is no longer needed
         $searchText
-            .combineLatest(dataService.$allCoins)
+            .combineLatest(dataService.$allCoins, $sortOption)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .map(self.filterCoins)
+            .map(self.filterAndSortCoins)
         ///This is giving the data after the logic is applied
             .sink { [weak self] (returnedCoins) in
                 guard let self else {return}
-                DispatchQueue.main.async {
-                    self.allCoins = returnedCoins
-                        .filter { ($0.marketCapRank ?? 0) > 0 }
-                        .sorted {
-                            ($0.marketCapRank ?? Int.max) < ($1.marketCapRank ?? Int.max)
-                        }
-                }
+                self.allCoins = returnedCoins
             }
             .store(in: &cancellables)
         
@@ -58,7 +63,7 @@ class HomeViewModel: ObservableObject {
             })
             .sink { [weak self] returnedCoins in
                 guard let self else { return }
-                self.portfolioCoins = returnedCoins
+                self.portfolioCoins = self.sortPortfolioCoinsIfNeeded(coins: returnedCoins)
             }.store(in: &cancellables)
         
         //Updates Market Data 
@@ -119,6 +124,11 @@ class HomeViewModel: ObservableObject {
         return stats
     }
     
+    private func filterAndSortCoins(text: String, coins: [CoinModel], sortOption: SortOption) -> [CoinModel] {
+        let updatedCoins = filterCoins(text: text, startingCoins: coins)
+        return sortCoins(sortOption: sortOption, coins: updatedCoins)
+    }
+    
     private func filterCoins(text: String, startingCoins: [CoinModel]) -> [CoinModel] {
         guard !text.isEmpty else { return startingCoins }
         
@@ -127,6 +137,31 @@ class HomeViewModel: ObservableObject {
             return coin.name.lowercased().contains(lowercasedText) ||
             coin.symbol.lowercased().contains(lowercasedText) ||
             coin.id.lowercased().contains(lowercasedText)
+        }
+    }
+    
+    private func sortCoins(sortOption: SortOption, coins: [CoinModel]) -> [CoinModel] {
+        switch sortOption {
+        case .rank, .holding:
+            return coins.sorted(by: {$0.rank < $1.rank})
+        case .rankRerversed, .holdingReversed:
+            return coins.sorted(by: {$0.rank > $1.rank})
+        case .price:
+            return coins.sorted(by: {$0.currentPrice > $1.currentPrice})
+        case .priceReversed:
+            return coins.sorted(by: {$0.currentPrice < $1.currentPrice})
+        }
+    }
+    
+    private func sortPortfolioCoinsIfNeeded(coins: [CoinModel]) -> [CoinModel] {
+        //Will be sorting by holding or holdingReversed if needed.
+        switch sortOption {
+        case .holding:
+            return coins.sorted(by: {$0.currentHoldingsValue > $1.currentHoldingsValue})
+        case .holdingReversed:
+            return coins.sorted(by: {$0.currentHoldingsValue < $1.currentHoldingsValue})
+        default:
+            return coins
         }
     }
 }

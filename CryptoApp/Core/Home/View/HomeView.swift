@@ -97,7 +97,7 @@ extension HomeView {
         .listStyle(.plain)
         .refreshable {
             homeViewModel.reloadData()
-           // try? await Task.sleep(for: .seconds(2))
+            // try? await Task.sleep(for: .seconds(2))
             await withCheckedContinuation { continuation in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     continuation.resume()
@@ -117,14 +117,46 @@ extension HomeView {
     }
     
     private var columnTitles: some View {
-        HStack(spacing: 8.0) {
-            Text("Coins")
+        HStack {
+            HStack(spacing: 4.0) {
+                Text("Coins")
+                Image(systemName: "chevron.down")
+                    .opacity((homeViewModel.sortOption == .rank || homeViewModel.sortOption == .rankRerversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: homeViewModel.sortOption == .rank ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    homeViewModel.sortOption = homeViewModel.sortOption == .rank ? .rankRerversed : .rank
+                }
+            }
+            
             Spacer()
             if showPortfolio {
-                Text("Holdings")
+                HStack(spacing: 4.0) {
+                    Text("Holdings")
+                    Image(systemName: "chevron.down")
+                        .opacity((homeViewModel.sortOption == .holding || homeViewModel.sortOption == .holdingReversed) ? 1.0 : 0.0)
+                        .rotationEffect(Angle(degrees: homeViewModel.sortOption == .holding ? 0 : 180))
+                }
+                .onTapGesture {
+                    withAnimation(.default) {
+                        homeViewModel.sortOption = homeViewModel.sortOption == .holding ? .holdingReversed : .holding
+                    }
+                }
             }
+            
             Spacer()
-            Text("Price")
+            HStack(spacing: 4.0) {
+                Text("Price")
+                Image(systemName: "chevron.down")
+                    .opacity((homeViewModel.sortOption == .price || homeViewModel.sortOption == .priceReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: homeViewModel.sortOption == .price ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    homeViewModel.sortOption = homeViewModel.sortOption == .price ? .priceReversed : .price
+                }
+            }
         }
         .font(.subheadline)
         .foregroundColor(Color.theme.secondaryTextColor)
