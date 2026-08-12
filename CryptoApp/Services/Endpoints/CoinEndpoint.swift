@@ -9,6 +9,7 @@ import Foundation
 enum CoinEndpoint {
     case getMarketCoins(currency: String, page: Int)
     case getGlobalData
+    case getDetailCoinData(coinName: String)
 }
 
 extension CoinEndpoint: EndpointProtocol {
@@ -23,6 +24,8 @@ extension CoinEndpoint: EndpointProtocol {
             return "coins/markets"
         case .getGlobalData:
             return "global"
+        case .getDetailCoinData(coinName: let coinName):
+            return "coins/\(coinName)"
         }
     }
 
@@ -40,6 +43,16 @@ extension CoinEndpoint: EndpointProtocol {
             ]
         case .getGlobalData:
             return []
+        case .getDetailCoinData(coinName: let coinName):
+            return [
+                URLQueryItem(name: "localization", value: "false"),
+                URLQueryItem(name: "tickers", value: "false"),
+                URLQueryItem(name: "market_data", value: "false"),
+                URLQueryItem(name: "community_data", value: "false"),
+                URLQueryItem(name: "developer_data", value: "false"),
+                URLQueryItem(name: "sparkline", value: "false"),
+                URLQueryItem(name: "include_categories_details", value: "false")
+            ]
         }
     }
 
