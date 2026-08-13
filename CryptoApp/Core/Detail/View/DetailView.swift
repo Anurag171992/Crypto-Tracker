@@ -41,58 +41,12 @@ struct DetailView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 8) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(
-                            coinDetailViewModel.coinDetails?.description.en
-                            ?? "No Description available"
-                        )
-                        .lineLimit(showMoreDesciption ? nil : 5)
-                        
-                        Text(showMoreDesciption ? "Show Less" : "Read More")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.theme.accentColor)
-                    }
-                    .onTapGesture {
-                        withAnimation(.easeInOut) {
-                            showMoreDesciption.toggle()
-                        }
-                    }
-                    
-                    Text("Overview")
-                        .font(.title)
-                        .fontWeight(.regular)
-                        .foregroundColor(Color.theme.accentColor)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Divider()
-                    
-                    LazyVGrid(columns: cloumns, alignment: .leading,
-                              spacing: spacing,
-                              pinnedViews: []) {
-                        ForEach(0..<6) { _ in
-                            StatisticView(stat: StatisticModel(title: "Title", value: "Value"))
-                        }
-                    }
-                    
-                    Text("Additional Details")
-                        .font(.title)
-                        .fontWeight(.regular)
-                        .foregroundColor(Color.theme.accentColor)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Divider()
-                    
-                    LazyVGrid(columns: cloumns, alignment: .leading,
-                              spacing: spacing,
-                              pinnedViews: []) {
-                        ForEach(0..<6) { _ in
-                            StatisticView(stat: StatisticModel(title: "Title", value: "Value"))
-                        }
-                        
-                    }
+                    coinDescription
+                    overAndAdditionalInfo
                 }
                 .padding()
             }
-            .navigationTitle(coinDetailViewModel.coinDetails?.name ?? "No Name")
+            .navigationTitle(coinDetailViewModel.coin.name)
         }
     }
 }
@@ -100,5 +54,75 @@ struct DetailView: View {
 #Preview {
     NavigationView {
         DetailView(coin: PreviewProvider.shared.coin)
+    }
+}
+
+extension DetailView {
+    
+    @ViewBuilder
+    private var coinDescription: some View {
+        if let description = coinDetailViewModel.coinDetails?.description.en,
+           !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text(description)
+                    .lineLimit(showMoreDesciption ? nil : 5)
+                Text(showMoreDesciption ? "Show Less" : "Read More")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.theme.accentColor)
+                    .onTapGesture {
+                        withAnimation(.easeInOut) {
+                            showMoreDesciption.toggle()
+                        }
+                    }
+            }
+            
+            .onTapGesture {
+                withAnimation(.easeInOut) {
+                    showMoreDesciption.toggle()
+                }
+            }
+            
+        } else {
+            Text("No Description available")
+                .font(.caption)
+                .foregroundColor(Color.theme.secondaryTextColor)
+        }
+    }
+    
+    @ViewBuilder
+    private var overAndAdditionalInfo: some View {
+        
+        Text("Overview")
+            .font(.title)
+            .fontWeight(.semibold)
+            .foregroundColor(Color.theme.accentColor)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        Divider()
+        
+        LazyVGrid(columns: cloumns, alignment: .leading,
+                  spacing: spacing,
+                  pinnedViews: []) {
+            ForEach(coinDetailViewModel.overViewStatistics) { stats in
+                StatisticView(stat: stats)
+            }
+        }
+        
+        Text("Additional Details")
+            .font(.title)
+            .fontWeight(.semibold)
+            .foregroundColor(Color.theme.accentColor)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        Divider()
+        
+        LazyVGrid(columns: cloumns, alignment: .leading,
+                  spacing: spacing,
+                  pinnedViews: []) {
+            ForEach(coinDetailViewModel.additionalViewStatistics) { stats in
+                StatisticView(stat: stats)
+            }
+            
+        }
     }
 }
