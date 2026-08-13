@@ -35,9 +35,10 @@ struct HomeView: View {
                     altCoinlist
                         .listStyle(.plain)
                         .transition(.move(edge: .leading))
-                } else {
-                    portfolioCoinlist
-                        .transition(.move(edge: .trailing))
+                }
+                
+                if showPortfolio {
+                    emptyPortfolioView
                 }
                 Spacer(minLength: 0)
             }
@@ -111,6 +112,7 @@ extension HomeView {
                 }
                 .buttonStyle(.plain)
             }
+            .listRowBackground(Color.theme.backgroundColor)
         }
         .listStyle(.plain)
         .refreshable {
@@ -133,7 +135,7 @@ extension HomeView {
                 }
                 .buttonStyle(.plain)
             }
-
+            .listRowBackground(Color.theme.backgroundColor)
         }
         .listStyle(.plain)
     }
@@ -188,5 +190,22 @@ extension HomeView {
         .font(.subheadline)
         .foregroundColor(Color.theme.secondaryTextColor)
         .padding(.horizontal)
+    }
+    
+    private var emptyPortfolioView: some View {
+        ZStack(alignment: .top) {
+            if homeViewModel.portfolioCoins.isEmpty && homeViewModel.searchText.isEmpty {
+                Text("You have no coins in your portfolio.\nPlease add coins to your portfolio by clicking the + button 🧐")
+                    .font(.callout)
+                    .fontWeight(.medium)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color.theme.accentColor)
+                    .padding(50.0)
+                
+            } else {
+                portfolioCoinlist
+            }
+        }
+        .transition(.move(edge: .trailing))
     }
 }

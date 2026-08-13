@@ -24,11 +24,16 @@ struct PortfolioView: View {
                     coinLogoList
                     if selectedCoin != nil {
                         portfolioInputSection
+                            .foregroundColor(Color.theme.accentColor)
                     }
                 }
                 .padding()
                 .font(.headline)
             }
+            .background(
+                Color.theme.backgroundColor
+                    .ignoresSafeArea()
+            )
             .navigationTitle("Edit Portfolio")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

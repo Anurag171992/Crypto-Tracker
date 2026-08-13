@@ -69,7 +69,7 @@ class NetworkManager: NetworkingProtocol {
         request.allHTTPHeaderFields = endPoint.httpHeader
 
         return URLSession.shared.dataTaskPublisher(for: request)
-            .subscribe(on: DispatchQueue.global(qos: .userInitiated))
+            .subscribe(on: DispatchQueue.global(qos: .default)) /// Determines where the upstream work should be performed - here background
 
             .tryMap { output in
                 try self.handleURLResponse(
@@ -77,16 +77,17 @@ class NetworkManager: NetworkingProtocol {
                     url: url
                 )
             }
+            .retry(3)
             .decode(type: T.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)  /// Tells Combine to deliver downstream values on the Main thread after all background things like decoding also.
             .eraseToAnyPublisher()
     }
     
     /// Combine + URLSession
     func downloadData(url: URL) -> AnyPublisher<Data, Error> {
         URLSession.shared.dataTaskPublisher(for: url)
-            /// Determines where the upstream work should be performed.
-            .subscribe(on: DispatchQueue.global(qos: .userInitiated))
+            /// Determines where the upstream work should be performed - here background
+            .subscribe(on: DispatchQueue.global(qos: .default))
             
             /// Validates the HTTP response and returns the response data.
             .tryMap { output in
@@ -95,10 +96,9 @@ class NetworkManager: NetworkingProtocol {
                     url: url
                 )
             }
-            
+            .retry(3)
             /// Tells Combine to deliver downstream values on the Main thread.
             .receive(on: DispatchQueue.main)
-            
             /// Hides the concrete publisher type.
             .eraseToAnyPublisher()
     }

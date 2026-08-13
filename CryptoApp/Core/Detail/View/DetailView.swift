@@ -50,6 +50,10 @@ struct DetailView: View {
                     .padding()
                 }
             }
+            .background(
+                Color.theme.backgroundColor
+                    .ignoresSafeArea()
+            )
             .navigationTitle(coinDetailViewModel.coin.name)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -89,14 +93,14 @@ extension DetailView {
     private var coinDescription: some View {
         if let description = coinDetailViewModel.coinDescription,
            !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            
+        
             VStack(alignment: .leading, spacing: 8) {
                 Text(description)
                     .lineLimit(showMoreDesciption ? nil : 3)
                 Text(showMoreDesciption ? "Show Less" : "Read More")
                     .font(.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(Color.theme.accentColor)
+                    .foregroundColor(.blue)
                     .onTapGesture {
                         withAnimation(.easeInOut) {
                             showMoreDesciption.toggle()
@@ -109,11 +113,6 @@ extension DetailView {
                     showMoreDesciption.toggle()
                 }
             }
-            
-        } else {
-            Text("No Description available")
-                .font(.caption)
-                .foregroundColor(Color.theme.secondaryTextColor)
         }
     }
     

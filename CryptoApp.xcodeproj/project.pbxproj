@@ -11,6 +11,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75690534302E0C8F00E562F9 /* AddCoinValue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddCoinValue.png; sourceTree = "<group>"; };
+		75690535302E0C8F00E562F9 /* EditPortfolioView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EditPortfolioView.png; sourceTree = "<group>"; };
+		75690536302E0C8F00E562F9 /* HomeView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeView.png; sourceTree = "<group>"; };
+		75690537302E0C8F00E562F9 /* Launch Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Screen.png"; sourceTree = "<group>"; };
+		75690538302E0C8F00E562F9 /* PortfolioView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PortfolioView.png; sourceTree = "<group>"; };
+		75690539302E0C8F00E562F9 /* Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Refresh.png; sourceTree = "<group>"; };
+		7569053A302E0C8F00E562F9 /* SettingsView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsView.png; sourceTree = "<group>"; };
 		75753A64302464C3002CA77D /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75753B7B30249D81002CA77D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +75,13 @@
 		75753B7D30249D8F002CA77D /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				75690537302E0C8F00E562F9 /* Launch Screen.png */,
+				75690536302E0C8F00E562F9 /* HomeView.png */,
+				75690539302E0C8F00E562F9 /* Refresh.png */,
+				75690538302E0C8F00E562F9 /* PortfolioView.png */,
+				75690535302E0C8F00E562F9 /* EditPortfolioView.png */,
+				75690534302E0C8F00E562F9 /* AddCoinValue.png */,
+				7569053A302E0C8F00E562F9 /* SettingsView.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -293,6 +307,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -326,6 +341,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

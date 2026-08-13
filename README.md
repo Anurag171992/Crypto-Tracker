@@ -8,21 +8,6 @@ The application fetches real-time cryptocurrency market data and allows users to
 
 ---
 
-## Planned Features
-
-- Display live cryptocurrency market data
-- Search coins using Combine
-- Coin detail screen
-- Interactive 7-day price chart
-- Portfolio management
-- Add and remove coins from portfolio
-- Persist portfolio locally using Core Data
-- Offline support
-- Refresh support
-- Dark Mode support
-
----
-
 ## Architecture
 
 The project follows the **MVVM (Model-View-ViewModel)** architecture.
@@ -124,13 +109,51 @@ Injected dependencies for modularity and testability.
 
 ## 📸 Screenshots
 
-Screenshots will be added once the application is feature complete.  
-(Planned: Home, Portfolio, Coin Detail, Settings)
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+  <div>
+    <img src="Screenshots/Launch Screen.png" alt="Launch Screen" width="250"/>
+    <p align="center">Launch Screen</p>
+  </div>
+
+  <div>
+    <img src="Screenshots/HomeView.png" alt="Home View" width="250"/>
+    <p align="center">Home View</p>
+  </div>
+
+  <div>
+    <img src="Screenshots/Refresh.png" alt="Refresh" width="250"/>
+    <p align="center">Refresh</p>
+  </div>
+
+  <div>
+    <img src="Screenshots/PortfolioView.png" alt="Portfolio View" width="250"/>
+    <p align="center">Portfolio View</p>
+  </div>
+
+  <div>
+    <img src="Screenshots/EditPortfolioView.png" alt="Edit Portfolio View" width="250"/>
+    <p align="center">Edit Portfolio View</p>
+  </div>
+
+  <div>
+    <img src="Screenshots/AddCoinValue.png" alt="Add Coin Value" width="250"/>
+    <p align="center">Add Coin Value</p>
+  </div>
+
+  <div>
+    <img src="Screenshots/SettingsView.png" alt="Settings View" width="250"/>
+    <p align="center">Settings View</p>
+  </div>
+
+</div>
+
 
 ---
 
 ## 🗺 Roadmap
 
+- [] Custom Launch screen.
 - ✅ Market screen  
 - ✅ Search coins using Combine  
 - ✅ Pull to refresh with haptic feedback  
@@ -143,13 +166,13 @@ Screenshots will be added once the application is feature complete.
 - ✅ Offline support for added portfolio coins 
 - ✅ Image caching  
 - ✅ Dark Mode  
-- [ ] Settings page  
+- ✅ Settings page  
 
 ---
 
 ## 📝 Notes
 
-This project is under **active development**.
+This project is **fully completed**.
 
 ---
 

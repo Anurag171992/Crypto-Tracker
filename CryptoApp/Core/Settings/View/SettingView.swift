@@ -13,12 +13,22 @@ struct SettingView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                developerInfoSection
-                coingeckoSection
+            ZStack {
+                Color.theme.backgroundColor
+                    .ignoresSafeArea()
+                
+                List {
+                    developerInfoSection
+                        .listRowBackground(Color.theme.backgroundColor.opacity(0.5))
+                    coingeckoSection
+                        .listRowBackground(Color.theme.backgroundColor.opacity(0.5))
+                }
+                .scrollContentBackground(.hidden) // hides default background
+                .background(Color.theme.backgroundColor) // applies your custom background
             }
-           //.listStyle(GroupedListStyle())
             .navigationTitle("Settings")
+            .font(.headline)
+            .tint(.blue)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     CrossButtonView {
