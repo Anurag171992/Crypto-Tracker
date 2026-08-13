@@ -109,12 +109,12 @@ Injected dependencies for modularity and testability.
 <table>
   <tr>
     <td align="center">
-    <img src="Screenshots/API Key Required.png" alt="API Key Required" width="250"/><br/>
-    API Key Required
-    </td>
-    <td align="center">
       <img src="Screenshots/Launch Screen.png" alt="Launch Screen" width="250"/><br/>
       Launch Screen
+    </td>
+    <td align="center">
+      <img src="Screenshots/API Key Required.png" alt="API Key Required" width="250"/><br/>
+      API Key Required
     </td>
     <td align="center">
       <img src="Screenshots/HomeView.png" alt="Home View" width="250"/><br/>
