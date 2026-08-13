@@ -169,7 +169,14 @@ Injected dependencies for modularity and testability.
 
 ## 📝 Notes
 
-This project is **fully completed**.
+To run this project successfully, you need to configure the **CoinGecko API**:
+
+1. Go to [CoinGecko API](https://www.coingecko.com/en/api) and sign up for a free account.  
+2. Generate your API key from the developer dashboard.  
+3. Create a `Secrets.xcconfig` file in your project (do not commit this file to GitHub).  
+4. Add your API key inside **Secrets.xcconfig**:
+   ```text
+   COINGECKO_API_KEY = your_api_key_here
 
 ---
 
