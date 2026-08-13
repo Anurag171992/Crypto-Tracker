@@ -149,8 +149,7 @@ Screenshots will be added once the application is feature complete.
 
 ## 📝 Notes
 
-This project is under **active development**.  
-The primary objective is to build a production-style cryptocurrency tracker while following **clean architecture principles** and **modern iOS development practices**.
+This project is under **active development**.
 
 ---
 
