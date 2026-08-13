@@ -144,15 +144,15 @@ Screenshots will be added once the application is feature complete.
 - ✅ Market screen
 - ✅ Search coins using Combine
 - ✅ Pull to refresh with haptic feedback
-- [ ] Coin detail screen
-- [ ] 7-day price chart
+- ✅ Coin detail screen
+- ✅ 7-day price chart
 - ✅ Portfolio
 - ✅ Add coins to portfolio
 - ✅ Edit portfolio holdings
 - ✅ Core Data persistence
 - [ ] Settings page
 - [ ] Offline support
-- [ ] Image caching
+- ✅ Image caching
 - ✅ Dark Mode
 
 ## Notes
