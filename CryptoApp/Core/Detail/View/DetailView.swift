@@ -40,13 +40,22 @@ struct DetailView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 8) {
-                    coinDescription
-                    overAndAdditionalInfo
+                VStack {
+                    ChartView(coin: coinDetailViewModel.coin)
+                        .padding(.vertical)
+                    VStack(spacing: 8.0) {
+                        coinDescription
+                        overAndAdditionalInfo
+                    }
+                    .padding()
                 }
-                .padding()
             }
             .navigationTitle(coinDetailViewModel.coin.name)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    toolbarItem
+                }
+            }
         }
     }
 }
@@ -58,6 +67,23 @@ struct DetailView: View {
 }
 
 extension DetailView {
+    
+    private var toolbarItem: some View {
+        HStack(spacing: 4.0) {
+            Button {
+                // Action here
+            } label: {
+                Text(coinDetailViewModel.coin.symbol.uppercased())
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.theme.secondaryTextColor)
+                
+                CoinImageView(coin: coinDetailViewModel.coin)
+                    .frame(width: 25.0, height: 25.0)
+            }
+            .buttonStyle(.plain) // removes bubble styling
+        }
+    }
     
     @ViewBuilder
     private var coinDescription: some View {
