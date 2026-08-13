@@ -180,6 +180,7 @@ To run this project successfully, you need to configure the **CoinGecko API**:
 ## 👨‍💻 Author
 
 Developed by **Anurag**  
-🔗 [Connect on LinkedIn](https://www.linkedin.com/in/anurag-kashyap-2a1b22a0/)
-📱 This application is designed for **iPhone** and also runs seamlessly on **iPad**.
+- 🔗 [Connect on LinkedIn](https://www.linkedin.com/in/anurag-kashyap-2a1b22a0/)
+
+- 📱 This application is designed for **iPhone** and also runs seamlessly on **iPad**.
 
