@@ -21,7 +21,5 @@ struct CrossButtonView: View {
     }
 }
 #Preview {
-    CrossButtonView {
-        print("Cross button tapped")
-    }
+    CrossButtonView {}
 }

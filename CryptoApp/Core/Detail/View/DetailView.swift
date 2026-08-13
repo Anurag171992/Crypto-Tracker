@@ -34,7 +34,6 @@ struct DetailView: View {
     
     init(coin: CoinModel) {
         self._coinDetailViewModel = StateObject(wrappedValue: DetailViewModel(coin: coin))
-        debugPrint("DetailView Finally loaded with: \(coin.name) coin")
     }
     
     var body: some View {
