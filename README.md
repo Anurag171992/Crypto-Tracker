@@ -18,7 +18,7 @@ The application fetches real-time cryptocurrency market data and allows users to
 - Add and remove coins from portfolio
 - Persist portfolio locally using Core Data
 - Offline support
-- refresh support
+- Refresh support
 - Dark Mode support
 
 ---
@@ -30,46 +30,32 @@ The project follows the **MVVM (Model-View-ViewModel)** architecture.
 This structure promotes separation of concerns, improves maintainability, and makes the application easier to test.
 
 - **Model**
-  - CoinModel
-
 - **View**
-  - HomeView
-
 - **ViewModel**
-  - HomeViewModel
-
 - **Services**
-  - Networking
-  - Coin Data Service
 
 ---
 
 ## Technical Highlights
 
 ### SwiftUI
-
-The entire user interface is built using SwiftUI with a declarative approach.
+Declarative UI built entirely with SwiftUI.
 
 ### Combine
-
-Combine is used for:
-
+Used for:
 - Fetching API data
 - Search functionality
 - State management
 - Reactive UI updates
 
 ### Core Data
-
-Core Data will be used to persist the user's portfolio locally, allowing portfolio information to remain available between app launches.
+Portfolio persistence across app launches.
 
 ### Generic Networking Layer
-
-A reusable networking layer will be used to fetch and decode any `Decodable` model.
+Reusable networking layer to fetch and decode any `Decodable` model.
 
 ### Dependency Injection
-
-Dependencies are injected where required to improve modularity and testability.
+Injected dependencies for modularity and testability.
 
 ---
 
@@ -84,85 +70,91 @@ Dependencies are injected where required to improve modularity and testability.
 
 ## Project Structure
 
-- **App**
-  - Application entry point
+CryptoApp
+│
+├── Core
+│   ├── Components        # Reusable SwiftUI views
+│   ├── Detail            # Coin detail feature
+│   │   ├── Model
+│   │   ├── View
+│   │   └── ViewModel
+│   └── Home              # Home feature
+│       ├── Model
+│       ├── View
+│       └── ViewModel
+│
+├── Helper                # Utility helpers
+│
+├── Main                  # Application entry point
+│
+├── Services
+│   ├── Endpoints         # API endpoints
+│   ├── Manager           # Networking/Service managers
+│   └── Service           # Core networking logic
+│
+├── Utilities
+│   ├── Constants         # App-wide constants
+│   ├── Extension         # Swift extensions
+│   └── Resources         # Assets, themes, configs
+│
+├── Info.plist            # Supporting files
+│
+├── Screenshots           # App screenshots and previews
+│
+└── README.md             # Documentation
 
-- **Core**
-  - **Components**
-    - Reusable SwiftUI views
-  - **Networking**
-    - Endpoint
-    - CoinEndpoint
-    - NetworkManager
-    - APIError
-  - **Utilities**
-    - Constants
-    - Extensions
+---
+## 🛠 Technologies
 
-- **Features**
-  - **Home**
-    - Model
-    - View
-    - ViewModel
-
-- **Resources**
-  - Assets
-  - Config
-    - Secrets.xcconfig
-
-- **Supporting Files**
-  - Info.plist
+- **[SwiftUI](ca://s?q=Learn_about_SwiftUI)** → Declarative UI framework for building modern iOS apps  
+- **[MVVM](ca://s?q=Explain_MVVM_architecture)** → Clean separation of concerns with Model, View, and ViewModel layers  
+- **[Combine](ca://s?q=What_is_Combine_in_Swift)** → Reactive programming for data streams and UI updates  
+- **[Core Data](ca://s?q=Core_Data_in_Swift)** → Local persistence for portfolio and offline support  
+- **[URLSession](ca://s?q=URLSession_in_Swift)** → Networking layer for API requests  
 
 ---
 
-## Technologies
+## ⚙️ Requirements
 
-- SwiftUI
-- MVVM
-- Combine
-- Core Data
-- URLSession
+- **Xcode 16+** → Latest IDE with SwiftUI/SwiftData support  
+- **iOS 17+** → Minimum deployment target  
+- **Swift 6** → Language version  
 
 ---
 
-## Requirements
+## 📸 Screenshots
 
-- Xcode 16+
-- iOS 17+
-- Swift 6
-
----
-
-## Screenshots
-
-Screenshots will be added once the application is feature complete.
+Screenshots will be added once the application is feature complete.  
+(Planned: Home, Portfolio, Coin Detail, Settings)
 
 ---
 
-## Roadmap
+## 🗺 Roadmap
 
-- ✅ Market screen
-- ✅ Search coins using Combine
-- ✅ Pull to refresh with haptic feedback
-- ✅ Coin detail screen
-- ✅ 7-day price chart
-- ✅ Portfolio
-- ✅ Add coins to portfolio
-- ✅ Edit portfolio holdings
-- ✅ Core Data persistence
-- [ ] Settings page
-- [ ] Offline support
-- ✅ Image caching
-- ✅ Dark Mode
-
-## Notes
-
-This project is currently under active development.
-
-The primary objective is to build a production-style cryptocurrency tracker while following clean architecture principles and modern iOS development practices.
+- ✅ Market screen  
+- ✅ Search coins using Combine  
+- ✅ Pull to refresh with haptic feedback  
+- ✅ Coin detail screen  
+- ✅ 7-day price chart  
+- ✅ Portfolio  
+- ✅ Add coins to portfolio  
+- ✅ Edit portfolio holdings  
+- ✅ Core Data persistence  
+- ✅ Offline support for added portfolio coins 
+- ✅ Image caching  
+- ✅ Dark Mode  
+- [ ] Settings page  
 
 ---
 
-## Author
+## 📝 Notes
+
+This project is under **active development**.  
+The primary objective is to build a production-style cryptocurrency tracker while following **clean architecture principles** and **modern iOS development practices**.
+
+---
+
+## 👨‍💻 Author
 
 Developed by **Anurag**.
+
