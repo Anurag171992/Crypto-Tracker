@@ -63,9 +63,6 @@ Injected dependencies for modularity and testability.
   - **Home**  
     Home screen feature, also split into Model, View, and ViewModel.  
 
-- **Helper**  
-  Utility helpers for common tasks and app-wide support functions.  
-
 - **Main**  
   Application entry point and lifecycle management.  
 
@@ -173,7 +170,7 @@ To run this project successfully, you need to configure the **CoinGecko API**:
 
 1. Go to [CoinGecko API](https://www.coingecko.com/en/api) and sign up for a free account.  
 2. Generate your API key from the developer dashboard.  
-3. Create a `Secrets.xcconfig` file in your project (do not commit this file to GitHub).  
+3. Create a `Secrets.xcconfig` file in your project.  
 4. Add your API key inside **Secrets.xcconfig**:
    ```text
    COINGECKO_API_KEY = your_api_key_here
