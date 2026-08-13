@@ -17,5 +17,6 @@ enum Secrets {
 }
 
 enum Constants {
-    static let githubUser = "mralexgray"
+    static let linedInProfile = URL(string: "https://www.linkedin.com/in/anurag-kashyap-2a1b22a0/")
+    static let coingecko = URL(string: "https://docs.coingecko.com")
 }
