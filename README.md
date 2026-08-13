@@ -138,14 +138,13 @@ Injected dependencies for modularity and testability.
       <img src="Screenshots/AddCoinValue.png" alt="Add Coin Value" width="250"/><br/>
       Add Coin Value
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <img src="Screenshots/SettingsView.png" alt="Settings View" width="250"/><br/>
       Settings View
     </td>
   </tr>
 </table>
+
 
 ---
 
