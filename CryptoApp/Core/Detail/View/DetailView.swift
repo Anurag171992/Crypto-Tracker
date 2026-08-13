@@ -44,8 +44,8 @@ struct DetailView: View {
                     ChartView(coin: coinDetailViewModel.coin)
                         .padding(.vertical)
                     VStack(spacing: 8.0) {
-                        coinDescription
                         overAndAdditionalInfo
+                        websiteSection
                     }
                     .padding()
                 }
@@ -87,12 +87,12 @@ extension DetailView {
     
     @ViewBuilder
     private var coinDescription: some View {
-        if let description = coinDetailViewModel.coinDetails?.description.en,
+        if let description = coinDetailViewModel.coinDescription,
            !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(description)
-                    .lineLimit(showMoreDesciption ? nil : 5)
+                    .lineLimit(showMoreDesciption ? nil : 3)
                 Text(showMoreDesciption ? "Show Less" : "Read More")
                     .font(.caption)
                     .fontWeight(.semibold)
@@ -126,7 +126,9 @@ extension DetailView {
             .foregroundColor(Color.theme.accentColor)
             .frame(maxWidth: .infinity, alignment: .leading)
         Divider()
-        
+        ZStack {
+            coinDescription
+        }
         LazyVGrid(columns: cloumns, alignment: .leading,
                   spacing: spacing,
                   pinnedViews: []) {
@@ -150,5 +152,28 @@ extension DetailView {
             }
             
         }
+    }
+    
+    private var websiteSection: some View {
+        VStack(alignment: .leading, spacing: 12.0) {
+            if let websiteURL = coinDetailViewModel.websiteURL,
+               let url = URL(string: websiteURL) {
+                Link("Website", destination: url)
+            }
+            
+            if let whitePaperURL = coinDetailViewModel.whitePaperURL,
+               let url = URL(string: whitePaperURL) {
+                Link("Whitepaper", destination: url)
+            }
+            
+            if let redditURL = coinDetailViewModel.subRedditURL,
+               let url = URL(string: redditURL) {
+                Link("Reddit", destination: url)
+            }
+            
+        }
+        .font(.headline)
+        .tint(.blue)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
