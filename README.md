@@ -153,7 +153,7 @@ Injected dependencies for modularity and testability.
 
 ## 🗺 Roadmap
 
-- [] Custom Launch screen.
+- ✅ Custom Launch screen.
 - ✅ Market screen  
 - ✅ Search coins using Combine  
 - ✅ Pull to refresh with haptic feedback  
