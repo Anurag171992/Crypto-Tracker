@@ -19,28 +19,34 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            //background color
-            Color.theme.backgroundColor
-                .ignoresSafeArea()
-            
             //Content Layer
             VStack {
-                homeHeader
-                HomeStatisticsView(showPortfolio: $showPortfolio)
-                    .frame(height: 70)
-                SearchBarView(searchText: $homeViewModel.searchText)
-                columnTitles
-                
-                if !showPortfolio {
-                    altCoinlist
-                        .listStyle(.plain)
-                        .transition(.move(edge: .leading))
+                if Secrets.coingeckoAccessToken.isEmpty {
+                    Text("To run the app, please enter your API key. You can get your API key from\n\n CoinGecko](https://www.coingecko.com/api/v3/\n\n Please place it in the Secrets.swift file")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color.theme.accentColor)
+                        .padding(50.0)
+                    
+                } else {
+                    homeHeader
+                    HomeStatisticsView(showPortfolio: $showPortfolio)
+                        .frame(height: 70)
+                    SearchBarView(searchText: $homeViewModel.searchText)
+                    columnTitles
+                    
+                    if !showPortfolio {
+                        altCoinlist
+                            .listStyle(.plain)
+                            .transition(.move(edge: .leading))
+                    }
+                    
+                    if showPortfolio {
+                        emptyPortfolioView
+                    }
+                    Spacer(minLength: 0)
                 }
-                
-                if showPortfolio {
-                    emptyPortfolioView
-                }
-                Spacer(minLength: 0)
             }
         }
         .sheet(isPresented: $showPortfolioView) {
