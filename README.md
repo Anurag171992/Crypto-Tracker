@@ -70,38 +70,38 @@ Injected dependencies for modularity and testability.
 
 ## Project Structure
 
-CryptoApp
-│
-├── Core
-│   ├── Components        # Reusable SwiftUI views
-│   ├── Detail            # Coin detail feature
-│   │   ├── Model
-│   │   ├── View
-│   │   └── ViewModel
-│   └── Home              # Home feature
-│       ├── Model
-│       ├── View
-│       └── ViewModel
-│
-├── Helper                # Utility helpers
-│
-├── Main                  # Application entry point
-│
-├── Services
-│   ├── Endpoints         # API endpoints
-│   ├── Manager           # Networking/Service managers
-│   └── Service           # Core networking logic
-│
-├── Utilities
-│   ├── Constants         # App-wide constants
-│   ├── Extension         # Swift extensions
-│   └── Resources         # Assets, themes, configs
-│
-├── Info.plist            # Supporting files
-│
-├── Screenshots           # App screenshots and previews
-│
-└── README.md             # Documentation
+- **Core**
+  - **Components**  
+    Reusable SwiftUI views shared across the app.  
+  - **Detail**  
+    Coin detail feature, organized into Model, View, and ViewModel.  
+  - **Home**  
+    Home screen feature, also split into Model, View, and ViewModel.  
+
+- **Helper**  
+  Utility helpers for common tasks and app-wide support functions.  
+
+- **Main**  
+  Application entry point and lifecycle management.  
+
+- **Services**
+  - **Endpoints**  
+    Defines API endpoints for cryptocurrency data.  
+  - **Manager**  
+    Networking and service managers to handle requests.  
+  - **Service**  
+    Core networking logic and reusable API layer.  
+
+- **Utilities**
+  - **Constants**  
+    Centralized app-wide constant values.  
+  - **Extension**  
+    Swift extensions for reusable functionality.  
+  - **Resources**  
+    Assets, themes, and configuration files.  
+
+- **Info.plist**  
+  Supporting configuration for the application.  
 
 ---
 ## 🛠 Technologies
