@@ -109,45 +109,42 @@ Injected dependencies for modularity and testability.
 
 ## 📸 Screenshots
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
-
-  <div>
-    <img src="Screenshots/Launch Screen.png" alt="Launch Screen" width="250"/>
-    <p align="center">Launch Screen</p>
-  </div>
-
-  <div>
-    <img src="Screenshots/HomeView.png" alt="Home View" width="250"/>
-    <p align="center">Home View</p>
-  </div>
-
-  <div>
-    <img src="Screenshots/Refresh.png" alt="Refresh" width="250"/>
-    <p align="center">Refresh</p>
-  </div>
-
-  <div>
-    <img src="Screenshots/PortfolioView.png" alt="Portfolio View" width="250"/>
-    <p align="center">Portfolio View</p>
-  </div>
-
-  <div>
-    <img src="Screenshots/EditPortfolioView.png" alt="Edit Portfolio View" width="250"/>
-    <p align="center">Edit Portfolio View</p>
-  </div>
-
-  <div>
-    <img src="Screenshots/AddCoinValue.png" alt="Add Coin Value" width="250"/>
-    <p align="center">Add Coin Value</p>
-  </div>
-
-  <div>
-    <img src="Screenshots/SettingsView.png" alt="Settings View" width="250"/>
-    <p align="center">Settings View</p>
-  </div>
-
-</div>
-
+<table>
+  <tr>
+    <td align="center">
+      <img src="Screenshots/Launch Screen.png" alt="Launch Screen" width="250"/><br/>
+      Launch Screen
+    </td>
+    <td align="center">
+      <img src="Screenshots/HomeView.png" alt="Home View" width="250"/><br/>
+      Home View
+    </td>
+    <td align="center">
+      <img src="Screenshots/Refresh.png" alt="Refresh" width="250"/><br/>
+      Refresh
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="Screenshots/PortfolioView.png" alt="Portfolio View" width="250"/><br/>
+      Portfolio View
+    </td>
+    <td align="center">
+      <img src="Screenshots/EditPortfolioView.png" alt="Edit Portfolio View" width="250"/><br/>
+      Edit Portfolio View
+    </td>
+    <td align="center">
+      <img src="Screenshots/AddCoinValue.png" alt="Add Coin Value" width="250"/><br/>
+      Add Coin Value
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="Screenshots/SettingsView.png" alt="Settings View" width="250"/><br/>
+      Settings View
+    </td>
+  </tr>
+</table>
 
 ---
 
