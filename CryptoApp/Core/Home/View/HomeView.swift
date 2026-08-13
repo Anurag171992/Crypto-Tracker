@@ -21,7 +21,7 @@ struct HomeView: View {
         ZStack {
             //Content Layer
             VStack {
-                if Secrets.coingeckoAccessToken.isEmpty {
+                if Secrets.coingeckoAccessToken == "put_your_coingecko_API_key_here" {
                     Text("To run the app, please enter your API key. You can get your API key from\n\n CoinGecko](https://www.coingecko.com/api/v3/\n\n Please place it in the Secrets.swift file")
                         .font(.title3)
                         .fontWeight(.medium)
